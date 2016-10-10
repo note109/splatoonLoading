@@ -72,11 +72,11 @@ var gradient = function gradient(snap, elems) {
     var i = COUNTER % (COLORS.length - 1);
     var leftColor = COLORS[i];
     var rightColor = COLORS[i + 1];
-    var g = snap.gradient("L(100, 0, 100, 0)" + rightColor + ":40-" + leftColor + ":60");
+    var g = snap.gradient("L(0, 0, 0, 0)" + rightColor + ":40-" + leftColor + ":60");
     elems.forEach(function (el) {
       el.svg.attr({ fill: g });
     });
-    g.animate({ x1: 100, y1: -100, x2: 100, y2: 500 }, 5000, mina.easeout, gradient(snap, elems));
+    g.animate({ x1: 0, y1: 0, x2: 0, y2: 300 }, 5000, mina.easeout, gradient(snap, elems));
 
     COUNTER++;
   };

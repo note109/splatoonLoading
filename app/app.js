@@ -69,11 +69,11 @@ const gradient = (snap, elems) => () => {
   const i = COUNTER % (COLORS.length - 1);
   const leftColor = COLORS[i];
   const rightColor = COLORS[i + 1];
-  const g = snap.gradient(`L(100, 0, 100, 0)${rightColor}:40-${leftColor}:60`);
+  const g = snap.gradient(`L(0, 0, 0, 0)${rightColor}:40-${leftColor}:60`);
   elems.forEach((el) => {
     el.svg.attr({fill: g});
   });
-  g.animate({ x1: 100, y1: -100, x2: 100, y2: 500 }, 5000, mina.easeout, gradient(snap, elems));
+  g.animate({ x1: 0, y1: 0, x2: 0, y2: 300 }, 5000, mina.easeout, gradient(snap, elems));
 
   COUNTER++;
 };
