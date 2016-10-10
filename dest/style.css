@@ -1,0 +1,34 @@
+body {
+  margin: 0;
+  padding: 0;
+  background-color: #000; }
+
+.wrapper {
+  filter: url("#joint");
+  transform: translate(50%, 0%);
+  margin-left: -100px; }
+
+.svg {
+  width: 200px;
+  height: 200px;
+  animation: rotation 10s linear infinite; }
+
+@keyframes rotation {
+  0% {
+    transform: rotate(-180deg); }
+  100% {
+    transform: rotate(-540deg); } }
+
+.circle {
+  r: 9px;
+  cx: 100;
+  cy: 100;
+  animation: scaleCircle 3.75s ease infinite alternate; }
+
+.filter {
+  filter: url(#displacementFilter); }
+
+@keyframes scaleCircle {
+  0% { }
+  100% {
+    r: 16px; } }

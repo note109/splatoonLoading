@@ -1,0 +1,56 @@
+body {
+  margin: 0;
+  padding: 0;
+  background-color: #000;
+}
+
+.wrapper {
+  filter: url("#joint");
+  transform: translate(50%, 0%);
+  margin-left: -100px;
+}
+
+$width: 200;
+$height: 200;
+
+$rotation-time: 10s;
+.svg {
+  width: $width * 1px;
+  height: $height * 1px;
+  animation: rotation #{$rotation-time} linear infinite;
+}
+
+@keyframes rotation {
+  0% {
+    transform: rotate(-180deg);
+  }
+  100% {
+    transform: rotate(-540deg);
+  }
+}
+
+$radius: 16px;
+$center-x: $width / 2;
+$center-y: $height / 2;
+
+$scaleCircle-time: 3.75s; // <- (interval / 2)
+.circle {
+  r: $radius - 7px;
+  cx: $center-x;
+  cy: $center-y;
+  animation: scaleCircle #{$scaleCircle-time} ease infinite alternate;
+}
+
+.filter {
+  filter: url(#displacementFilter);
+}
+
+
+@keyframes scaleCircle {
+  0% {
+    // r: 0px;
+  }
+  100% {
+    r: $radius;
+  }
+}
