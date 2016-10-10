@@ -11,7 +11,7 @@ body {
 .svg {
   width: 200px;
   height: 200px;
-  animation: rotation 10s linear infinite; }
+  animation: rotation 9s linear infinite; }
 
 @keyframes rotation {
   0% {
@@ -23,10 +23,12 @@ body {
   r: 6px;
   cx: 100;
   cy: 100;
-  filter: url(#displacementFilter);
-  animation: scaleCircle 3.75s ease infinite alternate; }
+  filter: url(#displacementFilter); }
+  .circle.animate {
+    animation: scaleCircle 3.75s ease infinite alternate; }
 
 @keyframes scaleCircle {
-  0% { }
+  0% {
+    r: 6px; }
   100% {
     r: 13px; } }

@@ -51,7 +51,13 @@ $(() => {
   const sibling2 = new Satellite(snap, 20, MAIN_DISTANCE - 10, 0, 10, 5, 5);
   sibling2.animateIn();
 
+  $("#mainCircle").addClass("animate");
+  setTimeout(() => {
+    $("#mainCircle").removeClass("animate");
+  }, DURATION_TIME * 2 + DELAY_TIME * (SATELLITE_DATA.length - 1) * 2);
+
   setInterval(() => {
+    $("#mainCircle").addClass("animate");
     sibling.animateIn();
     sibling2.animateIn();
     satellites.forEach((s, i) => {
