@@ -5,7 +5,7 @@ body {
 }
 
 .wrapper {
-  filter: url("#joint");
+  // filter: url("#joint");
   transform: translate(50%, 0%);
   margin-left: -100px;
 }
@@ -33,16 +33,17 @@ $radius: 16px;
 $center-x: $width / 2;
 $center-y: $height / 2;
 
-$scaleCircle-time: 3.75s; // <- (interval / 2)
+$scaleCircle-time: 3s;
 .circle {
   r: $radius - 7px;
   cx: $center-x;
   cy: $center-y;
+  fill: #C7FF18;
   animation: scaleCircle #{$scaleCircle-time} ease infinite alternate;
 }
 
 .filter {
-  filter: url(#displacementFilter);
+  // filter: url(#displacementFilter);
 }
 
 
