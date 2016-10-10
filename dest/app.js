@@ -12,24 +12,24 @@ var CENTER_Y = 100;
 
 var DELAY_TIME = 250;
 var DURATION_TIME = 3000;
-var MAIN_RADIUS = 16;
+var MAIN_RADIUS = 10;
 var MAIN_DISTANCE = 25;
 var SATELLITE_DATA = [{
-  maxRadius: MAIN_RADIUS + 0,
-  dir: -72 * 1 + 20,
-  distance: MAIN_DISTANCE + 5
+  maxRadius: MAIN_RADIUS + 2,
+  dir: -72 * 1,
+  distance: MAIN_DISTANCE
 }, {
-  maxRadius: MAIN_RADIUS - 4,
-  dir: -72 * 2 + 40,
-  distance: MAIN_DISTANCE - 2
-}, {
-  maxRadius: MAIN_RADIUS - 6,
-  dir: -72 * 3 + 20,
+  maxRadius: MAIN_RADIUS,
+  dir: -72 * 2 + 20,
   distance: MAIN_DISTANCE - 6
 }, {
-  maxRadius: MAIN_RADIUS - 10,
-  dir: -72 * 4 + 0,
-  distance: MAIN_DISTANCE - 0
+  maxRadius: MAIN_RADIUS - 2,
+  dir: -72 * 3 + 10,
+  distance: MAIN_DISTANCE - 2
+}, {
+  maxRadius: MAIN_RADIUS - 3,
+  dir: -72 * 4 + 10,
+  distance: MAIN_DISTANCE
 }];
 
 var COLORS = function () {
@@ -72,11 +72,11 @@ var gradient = function gradient(snap, elems) {
     var i = COUNTER % (COLORS.length - 1);
     var leftColor = COLORS[i];
     var rightColor = COLORS[i + 1];
-    var g = snap.gradient("L(0, 0, 0, 0)" + rightColor + ":40-" + leftColor + ":60");
+    var g = snap.gradient("L(100, 0, 100, 0)" + rightColor + ":40-" + leftColor + ":60");
     elems.forEach(function (el) {
       el.svg.attr({ fill: g });
     });
-    g.animate({ x1: 0, y1: 0, x2: 0, y2: 300 }, 5000, mina.easeout, gradient(snap, elems));
+    g.animate({ x1: 100, y1: -100, x2: 100, y2: 500 }, 5000, mina.easeout, gradient(snap, elems));
 
     COUNTER++;
   };
@@ -99,7 +99,7 @@ var Satellite = function () {
 
     this.svg = snap.circle(this.getX(dir), this.getY(dir), initR).attr({
       fill: COLOR
-    }).addClass("filter");
+    });
   }
 
   _createClass(Satellite, [{
