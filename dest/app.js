@@ -40,12 +40,28 @@ var COUNTER = 0;
 
 $(function () {
   var snap = Snap("#svg");
+  var gui = new dat.GUI();
 
   var satellites = SATELLITE_DATA.map(function (s, i) {
     var satellite = new Satellite(snap, s.dir, s.distance, i, s.maxRadius, 0);
     _.delay(function () {
       return satellite.animateIn();
     }, DELAY_TIME * i);
+    var folder = gui.addFolder("satellite-0" + i);
+    folder.add(satellite, "maxR", 0, 32);
+    folder.add(satellite, "minR", 0, 32);
+    folder.add(satellite, "cx", 50, 150).onChange(function () {
+      satellite.renderPosition();
+    });
+    folder.add(satellite, "cy", 50, 150).onChange(function () {
+      satellite.renderPosition();
+    });
+    folder.add(satellite, "distance", 0, 50).onChange(function () {
+      satellite.renderPosition();
+    });
+    folder.add(satellite, "dir", 0, 360).onChange(function () {
+      satellite.renderPosition();
+    });
     return satellite;
   });
 
@@ -102,21 +118,29 @@ var Satellite = function () {
     this.delayBase = delayBase;
     this.maxR = maxR;
     this.minR = minR;
+    this.dir = dir;
 
-    this.svg = snap.circle(this.getX(dir), this.getY(dir), initR).attr({
+    this.svg = snap.circle(this.getX(), this.getY(), initR).attr({
       fill: COLOR
     }).addClass("filter");
   }
 
   _createClass(Satellite, [{
+    key: "renderPosition",
+    value: function renderPosition() {
+      this.svg.attr({
+        cx: this.getX(),
+        cy: this.getY() });
+    }
+  }, {
     key: "getX",
-    value: function getX(dir) {
-      return this.cx + getAddXfromDir(dir, this.distance);
+    value: function getX() {
+      return this.cx + getAddXfromDir(this.dir, this.distance);
     }
   }, {
     key: "getY",
-    value: function getY(dir) {
-      return this.cy + getAddYfromDir(dir, this.distance);
+    value: function getY() {
+      return this.cy + getAddYfromDir(this.dir, this.distance);
     }
   }, {
     key: "animateIn",

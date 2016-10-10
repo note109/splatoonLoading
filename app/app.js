@@ -37,12 +37,20 @@ let COUNTER = 0;
 
 $(() => {
   const snap = Snap("#svg");
+  const gui = new dat.GUI();
 
   const satellites = SATELLITE_DATA.map((s, i) => {
     const satellite = new Satellite(snap, s.dir, s.distance, i, s.maxRadius, 0);
     _.delay(() => {
       return satellite.animateIn();
     }, DELAY_TIME * i);
+    const folder = gui.addFolder(`satellite-0${i}`);
+    folder.add(satellite, "maxR", 0, 32);
+    folder.add(satellite, "minR", 0, 32);
+    folder.add(satellite, "cx", 50, 150).onChange(() => {satellite.renderPosition()});
+    folder.add(satellite, "cy", 50, 150).onChange(() => {satellite.renderPosition()});
+    folder.add(satellite, "distance", 0, 50).onChange(() => {satellite.renderPosition()});
+    folder.add(satellite, "dir", 0, 360).onChange(() => {satellite.renderPosition()});
     return satellite;
   });
 
@@ -92,18 +100,26 @@ class Satellite {
     this.delayBase = delayBase;
     this.maxR = maxR;
     this.minR = minR;
+    this.dir = dir;
 
-    this.svg = snap.circle(this.getX(dir), this.getY(dir), initR).attr({
+    this.svg = snap.circle(this.getX(), this.getY(), initR).attr({
       fill: COLOR,
     }).addClass("filter");
   }
 
-  getX(dir) {
-    return this.cx + getAddXfromDir(dir, this.distance);
+  renderPosition() {
+    this.svg.attr({
+      cx: this.getX(),
+      cy: this.getY()}
+    );
   }
 
-  getY(dir) {
-    return this.cy + getAddYfromDir(dir, this.distance);
+  getX() {
+    return this.cx + getAddXfromDir(this.dir, this.distance);
+  }
+
+  getY() {
+    return this.cy + getAddYfromDir(this.dir, this.distance);
   }
 
   animateIn() {
