@@ -4,8 +4,6 @@ var _createClass = function () { function defineProperties(target, props) { for 
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
-function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } else { return Array.from(arr); } }
-
 var COLOR = "#C7FF18";
 var CENTER_X = 100;
 var CENTER_Y = 100;
@@ -15,21 +13,21 @@ var DURATION_TIME = 3000;
 var MAIN_RADIUS = 16;
 var MAIN_DISTANCE = 25;
 var SATELLITE_DATA = [{
-  maxRadius: MAIN_RADIUS + 0,
-  dir: -72 * 1 + 20,
-  distance: MAIN_DISTANCE + 5
+  maxRadius: MAIN_RADIUS,
+  dir: -72 * 1,
+  distance: MAIN_DISTANCE
 }, {
-  maxRadius: MAIN_RADIUS - 4,
-  dir: -72 * 2 + 40,
-  distance: MAIN_DISTANCE - 2
+  maxRadius: MAIN_RADIUS,
+  dir: -72 * 2,
+  distance: MAIN_DISTANCE
 }, {
-  maxRadius: MAIN_RADIUS - 6,
-  dir: -72 * 3 + 20,
-  distance: MAIN_DISTANCE - 6
+  maxRadius: MAIN_RADIUS,
+  dir: -72 * 3,
+  distance: MAIN_DISTANCE
 }, {
-  maxRadius: MAIN_RADIUS - 10,
-  dir: -72 * 4 + 0,
-  distance: MAIN_DISTANCE - 0
+  maxRadius: MAIN_RADIUS,
+  dir: -72 * 4,
+  distance: MAIN_DISTANCE
 }];
 
 var COLORS = function () {
@@ -49,38 +47,14 @@ $(function () {
     return satellite;
   });
 
-  var sibling = new Satellite(snap, 0, MAIN_DISTANCE - 0, 0, 12, 5, 5);
-  sibling.animateIn();
-  var sibling2 = new Satellite(snap, 20, MAIN_DISTANCE - 10, 0, 10, 5, 5);
-  sibling2.animateIn();
-
   setInterval(function () {
-    sibling.animateIn();
-    sibling2.animateIn();
     satellites.forEach(function (s, i) {
       _.delay(function () {
         s.animateIn();
       }, DELAY_TIME * i);
     });
   }, DURATION_TIME * 2 + DELAY_TIME * (SATELLITE_DATA.length - 1) * 2);
-
-  gradient(snap, [].concat(_toConsumableArray(satellites), [sibling, sibling2, { svg: Snap("#mainCircle") }]))();
 });
-
-var gradient = function gradient(snap, elems) {
-  return function () {
-    var i = COUNTER % (COLORS.length - 1);
-    var leftColor = COLORS[i];
-    var rightColor = COLORS[i + 1];
-    var g = snap.gradient("L(0, 0, 0, 0)" + rightColor + ":40-" + leftColor + ":60");
-    elems.forEach(function (el) {
-      el.svg.attr({ fill: g });
-    });
-    g.animate({ x1: 0, y1: 0, x2: 0, y2: 300 }, 5000, mina.easeout, gradient(snap, elems));
-
-    COUNTER++;
-  };
-};
 
 var Satellite = function () {
   function Satellite(snap, dir, distance, delayBase) {

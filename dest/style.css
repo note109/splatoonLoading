@@ -4,7 +4,6 @@ body {
   background-color: #000; }
 
 .wrapper {
-  filter: url("#joint");
   transform: translate(50%, 0%);
   margin-left: -100px; }
 
@@ -23,10 +22,8 @@ body {
   r: 9px;
   cx: 100;
   cy: 100;
+  fill: #C7FF18;
   animation: scaleCircle 3.75s ease infinite alternate; }
-
-.filter {
-  filter: url(#displacementFilter); }
 
 @keyframes scaleCircle {
   0% { }
