@@ -14,7 +14,7 @@
 
   <div class="wrapper">
     <svg class="svg" id="svg" xmlns="http://www.w3.org/2000/svg" version="1.1">
-      <circle class="circle filter" id="mainCircle"/>
+      <circle class="circle" id="mainCircle"/>
     </svg>
   </div>
 
@@ -23,7 +23,7 @@
       <!-- Thick -->
       <defs>
         <filter id="joint">
-            <feGaussianBlur in="SourceGraphic" result="blur" stdDeviation="3" />
+            <feGaussianBlur in="SourceGraphic" result="blur" stdDeviation="7" />
             <feColorMatrix mode="matrix" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 32 -7" result="joint" />
             <feGaussianBlur in="joint" stdDeviation="3" result="shadow" />
             <feBlend in2="joint" in="SourceGraphic" result="mix" />
@@ -37,6 +37,14 @@
               numOctaves="2" result="turbulence"/>
           <feDisplacementMap in2="turbulence" in="SourceGraphic"
               scale="50" xChannelSelector="R" yChannelSelector="G"/>
+        </filter>
+      </defs>
+      <defs>
+        <filter id="displacementFilterSub">
+          <feTurbulence type="fractalNoise" baseFrequency="0.015"
+              numOctaves="2" in="shadow" result="turbulence"/>
+          <feDisplacementMap in2="turbulence" in="SourceGraphic"
+              scale="30" xChannelSelector="R" yChannelSelector="G"/>
         </filter>
       </defs>
   </svg>

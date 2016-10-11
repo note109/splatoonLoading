@@ -4,28 +4,28 @@ const CENTER_Y = 100;
 
 const DELAY_TIME = 250;
 const DURATION_TIME = 3000;
-const MAIN_RADIUS = 16;
+const MAIN_RADIUS = 10;
 const MAIN_DISTANCE = 25;
 const SATELLITE_DATA = [
   {
-    maxRadius: MAIN_RADIUS + 0,
-    dir: -72 * 1 + 20,
-    distance: MAIN_DISTANCE + 5,
+    maxRadius: MAIN_RADIUS + 2,
+    dir: -72 * 1,
+    distance: MAIN_DISTANCE,
   },
   {
-    maxRadius: MAIN_RADIUS - 4,
-    dir: -72 * 2 + 40,
-    distance: MAIN_DISTANCE - 2,
-  },
-  {
-    maxRadius: MAIN_RADIUS - 6,
-    dir: -72 * 3 + 20,
+    maxRadius: MAIN_RADIUS,
+    dir: -72 * 2 + 20,
     distance: MAIN_DISTANCE - 6,
   },
   {
-    maxRadius: MAIN_RADIUS - 10,
-    dir: -72 * 4 + 0,
-    distance: MAIN_DISTANCE - 0,
+    maxRadius: MAIN_RADIUS - 2,
+    dir: -72 * 3 + 10,
+    distance: MAIN_DISTANCE - 2,
+  },
+  {
+    maxRadius: MAIN_RADIUS - 3,
+    dir: -72 * 4 + 10,
+    distance: MAIN_DISTANCE,
   },
 ];
 
