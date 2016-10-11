@@ -13,7 +13,7 @@ body {
 $width: 200;
 $height: 200;
 
-$rotation-time: 9s;
+$rotation-time: 10s;
 .svg {
   width: $width * 1px;
   height: $height * 1px;
@@ -38,19 +38,17 @@ $scaleCircle-time: 3.75s; // <- (interval / 2)
   r: $radius - 7px;
   cx: $center-x;
   cy: $center-y;
-
-  &.animate {
-    animation: scaleCircle #{$scaleCircle-time} ease infinite alternate;
-  }
+  animation: scaleCircle #{$scaleCircle-time} ease infinite alternate;
 }
 
 .filter {
   filter: url(#displacementFilter);
 }
 
+
 @keyframes scaleCircle {
   0% {
-    r: $radius - 7px;
+    // r: 0px;
   }
   100% {
     r: $radius;

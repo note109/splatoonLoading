@@ -37,20 +37,12 @@ let COUNTER = 0;
 
 $(() => {
   const snap = Snap("#svg");
-  const gui = new dat.GUI();
 
   const satellites = SATELLITE_DATA.map((s, i) => {
     const satellite = new Satellite(snap, s.dir, s.distance, i, s.maxRadius, 0);
     _.delay(() => {
       return satellite.animateIn();
     }, DELAY_TIME * i);
-    const folder = gui.addFolder(`satellite-0${i}`);
-    folder.add(satellite, "maxR", 0, 32);
-    folder.add(satellite, "minR", 0, 32);
-    folder.add(satellite, "cx", 50, 150).onChange(() => {satellite.renderPosition()});
-    folder.add(satellite, "cy", 50, 150).onChange(() => {satellite.renderPosition()});
-    folder.add(satellite, "distance", 0, 50).onChange(() => {satellite.renderPosition()});
-    folder.add(satellite, "dir", 0, 360).onChange(() => {satellite.renderPosition()});
     return satellite;
   });
 
@@ -59,13 +51,7 @@ $(() => {
   const sibling2 = new Satellite(snap, 20, MAIN_DISTANCE - 10, 0, 10, 5, 5);
   sibling2.animateIn();
 
-  $("#mainCircle").addClass("animate");
-  setTimeout(() => {
-    $("#mainCircle").removeClass("animate");
-  }, DURATION_TIME * 2 + DELAY_TIME * (SATELLITE_DATA.length - 1) * 2);
-
   setInterval(() => {
-    $("#mainCircle").addClass("animate");
     sibling.animateIn();
     sibling2.animateIn();
     satellites.forEach((s, i) => {
@@ -83,11 +69,11 @@ const gradient = (snap, elems) => () => {
   const i = COUNTER % (COLORS.length - 1);
   const leftColor = COLORS[i];
   const rightColor = COLORS[i + 1];
-  const g = snap.gradient(`L(0, 0, 0, 0)${rightColor}:40-${leftColor}:60`);
+  const g = snap.gradient(`L(100, 0, 100, 0)${rightColor}:40-${leftColor}:60`);
   elems.forEach((el) => {
     el.svg.attr({fill: g});
   });
-  g.animate({ x1: 0, y1: 0, x2: 0, y2: 300 }, 5000, mina.easeout, gradient(snap, elems));
+  g.animate({ x1: 100, y1: -100, x2: 100, y2: 500 }, 5000, mina.easeout, gradient(snap, elems));
 
   COUNTER++;
 };
@@ -100,26 +86,18 @@ class Satellite {
     this.delayBase = delayBase;
     this.maxR = maxR;
     this.minR = minR;
-    this.dir = dir;
 
-    this.svg = snap.circle(this.getX(), this.getY(), initR).attr({
+    this.svg = snap.circle(this.getX(dir), this.getY(dir), initR).attr({
       fill: COLOR,
     }).addClass("filter");
   }
 
-  renderPosition() {
-    this.svg.attr({
-      cx: this.getX(),
-      cy: this.getY()}
-    );
+  getX(dir) {
+    return this.cx + getAddXfromDir(dir, this.distance);
   }
 
-  getX() {
-    return this.cx + getAddXfromDir(this.dir, this.distance);
-  }
-
-  getY() {
-    return this.cy + getAddYfromDir(this.dir, this.distance);
+  getY(dir) {
+    return this.cy + getAddYfromDir(dir, this.distance);
   }
 
   animateIn() {
