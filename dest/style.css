@@ -26,9 +26,6 @@ body {
   .circle.animate {
     animation: scaleCircle 3.75s ease infinite alternate; }
 
-.filter {
-  filter: url(#displacementFilter); }
-
 @keyframes scaleCircle {
   0% {
     r: 9px; }

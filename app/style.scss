@@ -45,7 +45,7 @@ $scaleCircle-time: 3.75s; // <- (interval / 2)
 }
 
 .filter {
-  filter: url(#displacementFilter);
+  // filter: url(#displacementFilter);
 }
 
 @keyframes scaleCircle {
