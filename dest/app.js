@@ -15,21 +15,21 @@ var DURATION_TIME = 3000;
 var MAIN_RADIUS = 16;
 var MAIN_DISTANCE = 25;
 var SATELLITE_DATA = [{
-  maxRadius: MAIN_RADIUS + 0,
-  dir: -72 * 1 + 20,
-  distance: MAIN_DISTANCE + 5
+  maxRadius: MAIN_RADIUS,
+  dir: -72 * 1,
+  distance: MAIN_DISTANCE
 }, {
-  maxRadius: MAIN_RADIUS - 4,
-  dir: -72 * 2 + 40,
-  distance: MAIN_DISTANCE - 2
+  maxRadius: MAIN_RADIUS,
+  dir: -72 * 2,
+  distance: MAIN_DISTANCE
 }, {
-  maxRadius: MAIN_RADIUS - 6,
-  dir: -72 * 3 + 20,
-  distance: MAIN_DISTANCE - 6
+  maxRadius: MAIN_RADIUS,
+  dir: -72 * 3,
+  distance: MAIN_DISTANCE
 }, {
-  maxRadius: MAIN_RADIUS - 10,
-  dir: -72 * 4 + 0,
-  distance: MAIN_DISTANCE - 0
+  maxRadius: MAIN_RADIUS,
+  dir: -72 * 4,
+  distance: MAIN_DISTANCE
 }];
 
 var COLORS = function () {
