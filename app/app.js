@@ -3,7 +3,7 @@ const CENTER_X = 100;
 const CENTER_Y = 100;
 
 const DELAY_TIME = 250;
-const DURATION_TIME = 3000;
+const DURATION_TIME = 2500;
 const MAIN_RADIUS = 10;
 const MAIN_DISTANCE = 25;
 const SATELLITE_DATA = [

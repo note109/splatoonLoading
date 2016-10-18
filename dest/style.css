@@ -11,7 +11,7 @@ body {
 .svg {
   width: 200px;
   height: 200px;
-  animation: rotation 10s linear infinite; }
+  animation: rotation 9s linear infinite; }
 
 @keyframes rotation {
   0% {
